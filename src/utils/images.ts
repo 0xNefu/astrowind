@@ -1,4 +1,21 @@
 // src/utils/images.ts
-// PERMANENT FIX — NO MORE BROKEN IMAGE OPTIMIZATION
-export const getOptimizedImage = async (src: any) => ({ src: String(src || '/txchyon-hero.png') });
-export const getImagesOptimized = async (images: any[]) => images.map(img => ({ src: String(img || '/txchyon-hero.png') }));
+// Restored – fixes findImage error on Cloudflare
+
+import type { ImageMetadata } from 'astro';
+
+export const findImage = (imagePath?: string | ImageMetadata | null): string | undefined => {
+  if (!imagePath) return undefined;
+
+  if (typeof imagePath === 'string') {
+    // If it's already a full URL (like external placeholder), return as-is
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      return imagePath;
+    }
+    // If it's a local path like /blog/something.jpg
+    if (imagePath.startsWith('/')) {
+      return imagePath;
+    }
+  }
+
+  return undefined;
+};
