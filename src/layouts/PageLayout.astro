@@ -1,15 +1,14 @@
 ---
+// src/layouts/PageLayout.astro
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 import Announcement from '~/components/widgets/Announcement.astro';
 
-import { headerData, footerData } from '~/navigation';
-
-import type { MetaData } from '~/types';
+import { headerData } from '~/navigation';
 
 export interface Props {
-  metadata?: MetaData;
+  metadata?: any;
 }
 
 const { metadata } = Astro.props;
@@ -19,13 +18,24 @@ const { metadata } = Astro.props;
   <slot name="announcement">
     <Announcement />
   </slot>
+
   <slot name="header">
-    <Header {...headerData} isSticky showRssFeed showToggleTheme />
+    <Header {...headerData} isSticky showToggleTheme />
   </slot>
+
   <main>
     <slot />
   </main>
+
+  <!-- THIS IS THE ONLY LINE YOU NEED — CLEAN FOOTER, NO BLOAT -->
   <slot name="footer">
-    <Footer {...footerData} />
+    <Footer
+  theme="dark"
+  socialLinks={[
+    { ariaLabel: 'Twitter', href: 'https://twitter.com/txchyon', icon: 'tabler:brand-twitter' },
+    { ariaLabel: 'Discord', href: 'https://discord.gg/txchyon', icon: 'tabler:brand-discord' },
+  ]}
+  footNote="© 2025 Txchyon Capital · Not financial advice · DYOR"
+/>
   </slot>
 </Layout>

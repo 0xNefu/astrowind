@@ -1,58 +1,56 @@
 ---
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import type { CallToAction, Widget } from '~/types';
 import Headline from '~/components/ui/Headline.astro';
 import Button from '~/components/ui/Button.astro';
 
-interface Props extends Widget {
+interface Props {
   title?: string;
   subtitle?: string;
-  tagline?: string;
-  callToAction?: CallToAction;
-  actions?: string | CallToAction[];
+  actions?: Array<{
+    text: string;
+    href: string;
+    variant?: 'primary' | 'secondary' | 'link';
+    size?: 'md' | 'lg';
+    icon?: string;
+  }>;
+  id?: string;
 }
 
 const {
-  title = await Astro.slots.render('title'),
-  subtitle = await Astro.slots.render('subtitle'),
-  tagline = await Astro.slots.render('tagline'),
-  actions = await Astro.slots.render('actions'),
-
+  title = "Stay poor or stay updated.",
+  subtitle = "New research every week. No paywall. No noise.",
+  actions = [
+    { text: 'Read Alpha', href: '/blog', variant: 'primary', size: 'lg' },
+    { text: '@txchyon', href: 'https://twitter.com/txchyon', icon: 'tabler:brand-twitter' },
+    { text: 'Join Discord', href: 'https://discord.gg/txchyon', icon: 'tabler:brand-discord' },
+  ],
   id,
-  isDark = false,
-  classes = {},
-  bg = await Astro.slots.render('bg'),
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <div
-    class="max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600"
-  >
+<WidgetWrapper id={id} containerClass="py-20">
+  <div class="max-w-4xl mx-auto text-center px-6">
     <Headline
       title={title}
       subtitle={subtitle}
-      tagline={tagline}
       classes={{
-        container: 'mb-0 md:mb-0',
-        title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading',
-        subtitle: 'text-xl text-muted dark:text-slate-400',
+        container: 'mb-10',
+        title: 'text-5xl md:text-6xl font-bold tracking-tight text-white',
+        subtitle: 'text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto',
       }}
     />
-    {
-      actions && (
-        <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
-          {Array.isArray(actions) ? (
-            actions.map((action) => (
-              <div class="flex w-full sm:w-auto">
-                <Button {...(action || {})} class="w-full sm:mb-0" />
-              </div>
-            ))
-          ) : (
-            <Fragment set:html={actions} />
-          )}
-        </div>
-      )
-    }
+
+    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+      {actions.map((action) => (
+        <Button
+          {...action}
+          class={`px-10 py-5 text-lg font-bold transition-all transform hover:scale-105 ${
+            action.variant === 'primary'
+              ? 'bg-gradient-to-r from-cyan-500 to-purple-600 shadow-2xl shadow-cyan-500/50'
+              : 'bg-white/10 backdrop-blur border border-cyan-500/30 hover:bg-white/20'
+          }`}
+        />
+      ))}
+    </div>
   </div>
 </WidgetWrapper>
