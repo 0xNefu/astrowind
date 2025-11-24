@@ -1,0 +1,21 @@
+﻿---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title="Txchyon Alpha">
+  <section class="container mx-auto px-6 py-24">
+    <h1 class="text-5xl font-bold mb-4">Txchyon Alpha Drops</h1>
+    <p class="text-xl text-gray-600 mb-16">Real edges. No paywall. No bullshit.</p>
+
+    {posts.length === 0 ? (
+      <p>No posts found.</p>
+    ) : (
+      <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map(post => <PostCard post={post} />)}
+      </div>
+    )}
+  </section>
+</BaseLayout>
