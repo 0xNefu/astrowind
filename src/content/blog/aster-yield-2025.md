@@ -1,7 +1,7 @@
 ---
 title: How We're Stacking 28% Real Yield on Aster Right Now (Live Position)
 description: Step-by-step breakdown of our current delta-neutral Aster perpetuals position earning 28% annualized with zero directional risk.
-pubDate: 2025-11-22
+pubDate: 2025-11-24
 author: Nefu
 authorTwitter: "@nefutrades"
 category: Yield Farming
