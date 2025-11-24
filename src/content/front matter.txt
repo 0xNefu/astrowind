@@ -1,0 +1,10 @@
+---
+title: "**Your Title Here**"
+description: "**Short 1-sentence summary**"
+date: "2025-11-23"
+author: "Txchyon Capital"
+authorTwitter: "txchyon"
+category: Yield Farming
+tags: ["Aster", "Real Yield", "Perps", "DeFi"]
+image: "/blog/**your-image-name**.jpg"    ← this line = beautiful hero image everywhere
+---

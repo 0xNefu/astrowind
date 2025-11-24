@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+const posts = await getCollection('blog');
+---
+<html>
+  <head><title>Debug Posts</title></head>
+  <body>
+    <h1>Raw Blog Collection:</h1>
+    <pre>{JSON.stringify(posts, null, 2)}</pre>
+    <p>Number of posts: {posts.length}</p>
+  </body>
+</html>
