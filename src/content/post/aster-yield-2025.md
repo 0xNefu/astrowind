@@ -2,14 +2,13 @@
 title: How We're Stacking 28% Real Yield on Aster Right Now (Live Position)
 description: Step-by-step breakdown of our current delta-neutral Aster perpetuals position earning 28% annualized with zero directional risk.
 publishDate: "2025-11-22"
-author: Txchyon Capital
+author: @NefuTrades
 authorTwitter: txchyon
 category: Yield Farming
 tags: ["Aster", "Funding Rates", "Real Yield", "DeFi"]
 image: /blog/28-percent-yield.jpg
 width: 1600
 height: 896
-# slug line intentionally removed → Astro now uses the filename correctly
 ---
 
 We're currently earning **28.1% annualized** on a $420k delta-neutral position on Aster — and you can copy it in under 5 minutes.
